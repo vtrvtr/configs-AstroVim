@@ -11,13 +11,29 @@ return {
     ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
     ["<leader>bD"] = {
       function()
-        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr) require("astronvim.utils.buffer").close(bufnr) end)
+        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr)
+          require("astronvim.utils.buffer").close(
+            bufnr)
+        end)
       end,
       desc = "Pick to close",
     },
     -- tables with the `name` key will be registered with which-key if it's installed
     -- this is useful for naming menus
     ["<leader>b"] = { name = "Buffers" },
+    -- Zen Mode
+    ["<C-z>"] = {
+      name = "Zen Mode",
+      function()
+        print("zen!!!")
+        require("zen-mode").toggle({});
+      end
+    },
+    ["gt"] = {
+      function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
+      desc = "Next buffer",
+    },
+
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
   },
