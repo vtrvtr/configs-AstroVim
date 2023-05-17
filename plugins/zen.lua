@@ -1,20 +1,38 @@
 return {
-  'folke/zen-mode.nvim',
-  cmd = {"EnterZen"},
+  "folke/zen-mode.nvim",
+  cmd = "ZenMode",
   event = "BufEnter",
-  name = "zen",
-  opts = function(_, config)
-    -- config variable is the default configuration table for the setup function call
-    -- local null_ls = require "null-ls"
-
-    -- Check supported formatters and linters
-    -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
-    -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
-    config.sources = {
-      -- Set a formatter
-      -- null_ls.builtins.formatting.stylua,
-      -- null_ls.builtins.formatting.prettier,
-    }
-    return config -- return final config table
-  end,
+  opts = {
+    window = {
+      backdrop = 1,
+      width = function() return math.min(120, vim.o.columns * 0.75) end,
+      height = 0.9,
+      options = {
+        number = false,
+        relativenumber = false,
+        foldcolumn = "0",
+        list = false,
+        showbreak = "NONE",
+        signcolumn = "no",
+      },
+    },
+    plugins = {
+      options = {
+        cmdheight = 1,
+        laststatus = 0,
+      },
+    },
+    on_open = function() -- disable diagnostics and indent blankline
+      vim.g.diagnostics_mode_old = vim.g.diagnostics_mode
+      vim.g.diagnostics_mode = 0
+      vim.diagnostic.config(require("astronvim.utils.lsp").diagnostics[0])
+      vim.g.indent_blankline_enabled_old = vim.g.indent_blankline_enabled
+      vim.g.indent_blankline_enabled = false
+    end,
+    on_close = function() -- restore diagnostics and indent blankline
+      vim.g.diagnostics_mode = vim.g.diagnostics_mode_old
+      vim.diagnostic.config(require("astronvim.utils.lsp").diagnostics[vim.g.diagnostics_mode])
+      vim.g.indent_blankline_enabled = vim.g.indent_blankline_enabled_old
+    end,
+  },
 }

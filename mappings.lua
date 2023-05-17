@@ -23,11 +23,16 @@ return {
     ["<leader>b"] = { name = "Buffers" },
     -- Zen Mode
     ["<C-z>"] = {
-      name = "Zen Mode",
       function()
-        print("zen!!!")
         require("zen-mode").toggle({});
-      end
+      end,
+      name = "Zen Mode",
+    },
+    ["<leader>z"] = {
+      function()
+        require("zen-mode").toggle({});
+      end,
+      name = "Zen Mode",
     },
     ["gt"] = {
       function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
