@@ -21,22 +21,18 @@ return {
     -- tables with the `name` key will be registered with which-key if it's installed
     -- this is useful for naming menus
     ["<leader>b"] = { name = "Buffers" },
-    -- Zen Mode
-    ["<C-z>"] = {
-      function()
-        require("zen-mode").toggle({});
-      end,
-      name = "Zen Mode",
-    },
-    ["<leader>z"] = {
-      function()
-        require("zen-mode").toggle({});
-      end,
-      name = "Zen Mode",
-    },
     ["gt"] = {
       function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
       desc = "Next buffer",
+    },
+    -- Zen Mode
+    ["<C-w>z"] = {
+      function()
+        require("zen-mode").toggle({
+          window = {}
+        })
+      end,
+      desc = "Zen Mode",
     },
 
     -- quick save
