@@ -51,7 +51,17 @@ return {
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
+      "clangd",
     },
+    config = {
+      clangd =  {
+        cmd = {
+          "clangd",
+          "--offset-encoding=utf-16"
+        }
+      }
+
+    }
   },
 
   -- Configure require("lazy").setup() options

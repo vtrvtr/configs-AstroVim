@@ -1,5 +1,6 @@
 return {
-  "jose-elias-alvarez/null-ls.nvim",
+  "shortcuts/no-neck-pain.nvim",
+  event = "BufEnter",
   opts = function(_, config)
     -- config variable is the default configuration table for the setup function call
     -- local null_ls = require "null-ls"
@@ -12,7 +13,6 @@ return {
       -- null_ls.builtins.formatting.stylua,
       -- null_ls.builtins.formatting.prettier,
     }
-    config.offsetEncoding = "utf-8"
     return config -- return final config table
   end,
 }

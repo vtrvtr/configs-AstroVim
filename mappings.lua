@@ -34,7 +34,28 @@ return {
       end,
       desc = "Zen Mode",
     },
-
+    -- Hover
+    ["<leader>q"] = { 
+      function() 
+        vim.lsp.buf.hover() 
+      end, 
+      desc = "Show hover info"
+    },
+    -- Search recent
+    ["<C-e>"] = {
+      function()
+        require("telescope.builtin").oldfiles()
+      end,
+      desc = "Search recent files used"
+    },
+    -- Code Actions
+    ["<Enter><Enter>"] = {
+      function() 
+        vim.lsp.buf.code_action()
+      end,
+      desc = "Show code actions"
+    } 
+    --
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
   },
