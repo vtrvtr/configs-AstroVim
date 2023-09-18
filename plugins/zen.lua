@@ -8,8 +8,8 @@ return {
       width = function() return math.min(120, vim.o.columns * 0.75) end,
       height = 0.9,
       options = {
-        number = false,
-        relativenumber = false,
+        number = true,
+        relativenumber = true,
         foldcolumn = "0",
         list = false,
         showbreak = "NONE",
@@ -24,7 +24,7 @@ return {
     },
     on_open = function() -- disable diagnostics and indent blankline
       vim.g.diagnostics_mode_old = vim.g.diagnostics_mode
-      vim.g.diagnostics_mode = 0
+      -- vim.g.diagnostics_mode = 0
       vim.diagnostic.config(require("astronvim.utils.lsp").diagnostics[0])
       vim.g.indent_blankline_enabled_old = vim.g.indent_blankline_enabled
       vim.g.indent_blankline_enabled = false
