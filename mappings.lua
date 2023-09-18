@@ -35,27 +35,33 @@ return {
       desc = "Zen Mode",
     },
     -- Hover
-    ["<leader>q"] = { 
-      function() 
-        vim.lsp.buf.hover() 
-      end, 
+    ["<leader>q"] = {
+      function()
+        vim.lsp.buf.hover()
+      end,
       desc = "Show hover info"
     },
     -- Search recent
+    -- ["<C-e>"] = {
+    --   function()
+    --     require("telescope.builtin").oldfiles()
+    --   end,
+    --   desc = "Search recent files used"
+    -- },
     ["<C-e>"] = {
       function()
-        require("telescope.builtin").oldfiles()
+        local query = require("portal.builtin").jumplist.query()
+        require("portal.builtin").jumplist.tunnel(query)
       end,
       desc = "Search recent files used"
     },
     -- Code Actions
     ["<Enter><Enter>"] = {
-      function() 
+      function()
         vim.lsp.buf.code_action()
       end,
       desc = "Show code actions"
-    } 
-    --
+    },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
   },
