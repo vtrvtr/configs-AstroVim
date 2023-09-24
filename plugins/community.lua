@@ -7,5 +7,6 @@ return {
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.typescript" },
+  { import = "astrocommunity.pack.vue" },
   { import = "astrocommunity.pack.python" },
 }
