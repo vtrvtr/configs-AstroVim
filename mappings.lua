@@ -55,12 +55,33 @@ return {
       end,
       desc = "Search recent files used"
     },
+    ["<C-o>"] = {
+      function()
+        local query = require("portal.builtin").jumplist.query()
+        require("portal.builtin").jumplist.tunnel_forward(query)
+      end,
+      desc = "Search recent files used forward"
+    },
+    ["<C-i>"] = {
+      function()
+        local query = require("portal.builtin").jumplist.query()
+        require("portal.builtin").jumplist.tunnel_backward(query)
+      end,
+      desc = "Search recent files used backwards"
+    },
     -- Code Actions
     ["<Enter><Enter>"] = {
       function()
         vim.lsp.buf.code_action()
       end,
       desc = "Show code actions"
+    },
+    -- Function signature help
+    ["<C-k>"] = {
+      function()
+        require("lsp_signature").toggle_float_win()
+      end,
+      desc = "Show function signature"
     },
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
