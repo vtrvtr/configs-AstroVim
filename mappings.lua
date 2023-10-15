@@ -83,6 +83,25 @@ return {
       end,
       desc = "Show function signature"
     },
+    -- Toggle TErm
+
+    ["<leader>1"] = {
+      "<cmd>1ToggleTerm<cr>",
+      desc = "Toggle Terminal 1"
+    },
+    ["<leader>2"] = {
+      "<cmd>2ToggleTerm<cr>",
+      desc = "Toggle Terminal 2"
+    },
+    ["<leader>3"] = {
+      "<cmd>3ToggleTerm<cr>",
+      desc = "Toggle Terminal 3"
+    },
+    ["<leader>4"] = {
+      "<cmd>4ToggleTerm<cr>",
+      desc = "Toggle Terminal 4"
+    }
+     
     -- quick save
     -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
   },
