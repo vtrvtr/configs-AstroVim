@@ -1,6 +1,7 @@
 return {
   "shortcuts/no-neck-pain.nvim",
   event = "BufEnter",
+  enabled = false,
   opts = function(_, config)
     -- config variable is the default configuration table for the setup function call
     -- local null_ls = require "null-ls"
