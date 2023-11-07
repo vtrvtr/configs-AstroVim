@@ -100,6 +100,24 @@ return {
     ["<leader>4"] = {
       "<cmd>4ToggleTerm<cr>",
       desc = "Toggle Terminal 4"
+    },
+
+    -- Navigate with alt
+    ["<m-h>"] = {
+      "<c-w><c-h>",
+      desc = "Go to left split"
+    },
+    ["<m-j>"] = {
+      "<c-w><c-j>",
+      desc = "Go to up split"
+    },
+    ["<m-k>"] = {
+      "<c-w><c-k>",
+      desc = "Go to down split"
+    },
+    ["<m-l>"] = {
+      "<c-w><c-l>",
+      desc = "Go to right split"
     }
      
     -- quick save
