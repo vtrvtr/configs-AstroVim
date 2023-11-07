@@ -3,10 +3,10 @@ return {
   opts = function(_, opts)
     local status = require("astronvim.utils.status")
 
-    opts.winbar = {     -- create custom winbar
+    opts.winbar = { -- create custom winbar
       -- store the current buffer number
       init = function(self) self.bufnr = vim.api.nvim_get_current_buf() end,
-      fallthrough = false,     -- pick the correct winbar based on condition
+      fallthrough = false, -- pick the correct winbar based on condition
       -- inactive winbar
       {
         condition = function() return not status.condition.is_active() end,
@@ -27,7 +27,7 @@ return {
         -- show the path to the file relative to the working directory
         status.component.separated_path { path_func = status.provider.filename { modify = ":.:h" } },
         -- add the file name and icon
-        status.component.file_info {     -- add file_info to breadcrumbs
+        status.component.file_info { -- add file_info to breadcrumbs
           file_icon = { hl = status.hl.filetype_color, padding = { left = 0 } },
           file_modified = false,
           file_read_only = false,
@@ -90,11 +90,22 @@ return {
       -- fill the rest of the statusline
       -- the elements after this will appear on the right of the statusline
       status.component.fill(),
+      {
+        status.component.builder {
+          -- astronvim.get_icon gets the user interface icon for a closed folder with a space after it
+          {
+            provider = status.provider.macro_recording(),
+          },
+          -- use the right separator and define the background color
+          -- surround = { separator = "right" },
+        },
+      },
+      status.component.fill(),
+
       -- add a component for the current diagnostics if it exists and use the right separator for the section
       status.component.diagnostics { surround = { separator = "right" } },
       -- add a component to display LSP clients, disable showing LSP progress, and use the right separator
       status.component.lsp { lsp_progress = false, surround = { separator = "right" } },
-      -- NvChad has some nice icons to go along with information, so we can create a parent component to do this
       -- all of the children of this table will be treated together as a single component
       {
         -- define a simple component where the provider is just a folder icon
@@ -112,7 +123,7 @@ return {
         status.component.file_info {
           -- we only want filename to be used and we can change the fname
           -- function to get the current working directory name
-          filename = { fname = function(nr) return vim.fn.expand("%:p") end, padding = { left = 1 } },
+          filename = { fname = function(nr) return vim.fn.getcwd(nr) end, padding = { left = 1 } },
           -- disable all other elements of the file_info component
           file_icon = false,
           file_modified = false,
